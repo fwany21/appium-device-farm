@@ -11,7 +11,7 @@ export default class NodeDevices {
     this.host = host;
   }
 
-  async postDevicesToHub(devices: DeviceWithPath[] | DeviceUpdate[], arg: string) {
+  async postDevicesToHub(devices: any[] | DeviceUpdate[], arg: string) {
     // DeviceWithPath -> new device
     // DeviceUpdate -> removed device
     try {

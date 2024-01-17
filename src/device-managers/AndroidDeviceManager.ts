@@ -29,7 +29,7 @@ export default class AndroidDeviceManager implements IDeviceManager {
   constructor(
     private pluginArgs: IPluginArgs,
     private hostPort: number,
-  ) {}
+  ) { }
 
   private initiateAbortControl(deviceUdid: string) {
     const control = new AbortController();
@@ -206,6 +206,8 @@ export default class AndroidDeviceManager implements IDeviceManager {
       sessionStartTime: 0,
       chromeDriverPath,
       userBlocked: false,
+      total_session_count: 0,
+      dashboard_link: ""
     };
   }
 
