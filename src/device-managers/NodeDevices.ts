@@ -14,6 +14,28 @@ export default class NodeDevices {
   async postDevicesToHub(devices: DeviceWithPath[] | DeviceUpdate[], arg: string) {
     // DeviceWithPath -> new device
     // DeviceUpdate -> removed device
+    try {
+      const myHost = devices[0].host
+      const sessions = (await axios.get(`${myHost}/dashboard/api/sessions`)).data?.result?.rows || [];
+      const deviceSessionMap: any = {};
+      sessions.forEach((session: any) => {
+        if (!deviceSessionMap[session.udid]) {
+          deviceSessionMap[session.udid] = [];
+        }
+        deviceSessionMap[session.udid].push(session);
+      });
+      sessions.forEach((session: any) => {
+        devices.forEach((device) => {
+          if (session.udid === device.udid) {
+            device.dashboard_link = `${myHost}/dashboard/?device_udid=${device.udid}`;
+            device.total_session_count = deviceSessionMap[device.udid]?.length || 0;
+          }
+        })
+      });
+    }
+    catch (error) {
+      log.error(`Fail to update dashboardlink: ${error}`);
+    }
     log.info(`Updating remote android devices ${this.host}/device-farm/api/register`);
     try {
       const status = (

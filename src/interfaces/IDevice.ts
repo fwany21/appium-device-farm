@@ -1,6 +1,8 @@
 import { Platform } from '../types/Platform';
 
 export interface IDevice {
+  total_session_count: any;
+  dashboard_link: any;
   systemPort: number;
   host: string;
   proxyPort?: number;
