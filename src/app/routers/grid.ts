@@ -40,10 +40,10 @@ async function getDevices(request: Request, response: Response) {
       deviceSessionMap[session.udid].push(session);
     });
     devices = devices.map((d) => {
-      if (d.dashboard_link === "") {
+      if (d.dashboard_link === '') {
         d.dashboard_link = `${dashboardPluginUrl}?device_udid=${d.udid}&start_time=${SERVER_UP_TIME}`;
-      } else if (!d.dashboard_link.includes("&start_time")) {
-        d.dashboard_link = `${d.dashboard_link}&start_time=${SERVER_UP_TIME}`
+      } else if (!d.dashboard_link.includes('&start_time')) {
+        d.dashboard_link = `${d.dashboard_link}&start_time=${SERVER_UP_TIME}`;
       }
       if (d.total_session_count === 0) {
         d.total_session_count = deviceSessionMap[d.udid]?.length || 0;
