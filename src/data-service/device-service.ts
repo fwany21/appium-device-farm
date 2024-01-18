@@ -57,7 +57,6 @@ export async function addNewDevice(devices: IDevice[], host?: string): Promise<I
         .chain()
         .find({ udid: device.udid })
         .update(function (d: IDevice) {
-          d.state = device.state;
           d.dashboard_link = device.dashboard_link;
           d.total_session_count = device.total_session_count;
         });
