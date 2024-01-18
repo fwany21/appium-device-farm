@@ -120,6 +120,10 @@
   align-items: flex-start;
 }
 
+.device-info-card-container__body_row[data-os="windows"][data-windows="true"] {
+  margin-bottom: 6px;
+}
+
 .device-info-card-container__body_row_label {
   font-size: 12px;
   color: #57606a;
